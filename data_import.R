@@ -1,4 +1,5 @@
 # Load data
+
 mn_county_data<- read.csv("~/Documents/R/COVID/covid-19-data/rolling-averages/us-counties.csv") %>% 
     tibble() %>% 
     filter(state=='Minnesota') %>% 
