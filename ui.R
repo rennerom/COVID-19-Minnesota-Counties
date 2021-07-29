@@ -2,7 +2,7 @@
 ui <- fluidPage(
     
     # Application title
-    titlePanel("COVID-19 Minnesota County By County Comparisons"),
+    titlePanel("COVID-19 in Minnesota"),
     
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
