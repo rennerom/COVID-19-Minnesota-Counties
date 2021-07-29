@@ -48,14 +48,10 @@ ui <- fluidPage(
                          inline = TRUE,
                          value = TRUE
                      )
-                     # fluidRow(verbatimTextOutput("value"))
-                     
-                     # submitButton("Create Plot")
         ),
         
         # Show a plot of the generated distribution
         mainPanel(width = 9,
-                  # plotOutput("distPlot"),
                   plotOutput("county_plots")
         )
     )

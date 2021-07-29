@@ -1,8 +1,6 @@
 # Define server logic required to draw a histogram
 server <- function(input, output) {
     
-    
-    
     output$county_plots <- renderPlot({
         
         filtered_counties <- mn_county_data %>% 
@@ -34,6 +32,7 @@ server <- function(input, output) {
                       size = 1.5,
                       alpha = .85,
                       show.legend = TRUE) +
+            
             scale_x_date(limits = c(input$date_filter[1], input$date_filter[2]),
                          labels = label_date_short(),
                          date_breaks = "1 month") +
@@ -54,5 +53,4 @@ server <- function(input, output) {
         p + if(input$state_toggle){state_level}
         
     })
-    
 }
