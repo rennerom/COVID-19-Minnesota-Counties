@@ -1,12 +1,12 @@
 # Load data
 
-mn_county_data<- read.csv("~/Documents/R/COVID/covid-19-data/rolling-averages/us-counties.csv") %>% 
+mn_county_data<- read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-counties.csv") %>% 
     tibble() %>% 
     filter(state=='Minnesota') %>% 
     mutate(date=as.Date(date)) %>% 
     mutate(across(where(is.numeric), ~replace_na(.x, 0)))
 
-mn_state_data <- read_csv(url("https://raw.githubusercontent.com/rennerom/covid-19-data/master/rolling-averages/us-states.csv")) %>% 
+mn_state_data <- read_csv(url("https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-states.csv")) %>% 
     tibble() %>% 
     filter(state=='Minnesota') %>% 
     mutate(date=as.Date(date)) %>% 

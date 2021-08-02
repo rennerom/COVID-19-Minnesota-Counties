@@ -1,6 +1,6 @@
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-    
+    theme = bslib::bs_theme(bootswatch = "minty"),
     # Application title
     titlePanel("COVID-19 in Minnesota"),
     
@@ -34,19 +34,12 @@ ui <- fluidPage(
                                  max = 100, 
                                  value = 0,
                                  ticks = FALSE),
-                     br(),
-                     h5(strong("Toggle State Level Cases per Capita")),
-                     prettyToggle(
-                         inputId = "state_toggle",
-                         label_on = "On",
-                         status_on = "default",
-                         icon_on = icon("ok-circle", lib = "glyphicon"),
-                         label_off = "Off",
-                         status_off = "default",
-                         icon_off = icon("remove-circle", lib = "glyphicon"),
-                         plain = TRUE,
-                         inline = TRUE,
-                         value = TRUE
+                    br(),
+                    prettySwitch(
+                        inputId = "state_switch",
+                        label = "Show State level data",
+                        value=TRUE,
+                        fill = TRUE
                      )
         ),
         

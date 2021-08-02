@@ -1,6 +1,6 @@
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-    
+    thematic::thematic_shiny()
     output$county_plots <- renderPlot({
         
         filtered_counties <- mn_county_data %>% 
@@ -17,6 +17,11 @@ server <- function(input, output) {
             top_n(1, cases_avg_per_100k)
         
         y_trim_amt <- ((100 - input$y_trim) / 100)
+        
+        
+        ##################################################
+        # GGPLOTS
+        ##################################################
         
         p <- ggplot(mn_county_data,aes(x=date)) +
             
@@ -36,21 +41,29 @@ server <- function(input, output) {
             scale_x_date(limits = c(input$date_filter[1], input$date_filter[2]),
                          labels = label_date_short(),
                          date_breaks = "1 month") +
+            
             scale_y_continuous(limits = c(0,y_trim_amt*max_cases$cases_avg_per_100k)) +
-            theme_minimal() +
+            # theme_minimal() +
             ylab('7 Day Average Covid Cases per 100k') +
             xlab('') +
             theme(plot.title = element_text(size = 40),
                   axis.text.x=element_text(angle=0, hjust=1, size = 12),
-                  panel.grid.major.x = element_blank())
+                  axis.text.y=element_text(size=12),
+                  axis.title.y = element_text(size = 16),
+                  legend.title = element_text(size = 20),
+                  legend.text = element_text(size = 16),
+                  panel.grid.major.x = element_blank()) +
+            
+            guides(color=guide_legend(title="County"))
+            
         
         state_level <- geom_line(data = mn_state_data,
                                  aes(x = date,
                                      y = cases_avg_per_100k),
                                  alpha = .45,
-                                 color = 'Black',
                                  size = 2)
-        p + if(input$state_toggle){state_level}
+        
+        p + if(input$state_switch){state_level}
         
     })
 }

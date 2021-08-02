@@ -1,9 +1,13 @@
 # required packages
+
 packages = c("tidyverse",
              "lubridate",
              "scales",
              "shiny",
-             "shinyWidgets")
+             "shinyWidgets",
+             "shinythemes",
+             "thematic",
+             "bslib")
 
 # check if each package is on the local machine
 # if a package is installed, it will be loaded
@@ -11,8 +15,8 @@ packages = c("tidyverse",
 
 init_packages = function(x) {
     if (!require(x, character.only = TRUE)) {
-        install.packages(x, dependencies = TRUE)
-        library(x, character.only = TRUE)
+        suppressWarnings(install.packages(x, dependencies = TRUE))
+        suppressWarnings(library(x, character.only = TRUE))
     }
 }
 
