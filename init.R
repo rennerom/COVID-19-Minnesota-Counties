@@ -15,10 +15,9 @@ packages = c("tidyverse",
 
 init_packages = function(x) {
     if (!require(x, character.only = TRUE)) {
-        suppressWarnings(install.packages(x, dependencies = TRUE))
-        suppressWarnings(library(x, character.only = TRUE))
+        suppressWarnings(install.packages(x, dependencies = TRUE, quietly = TRUE))
+        suppressPackageStartupMessages(library(x, character.only = TRUE, quietly = TRUE))
     }
 }
 
 package.check <- lapply(packages, init_packages)
-
